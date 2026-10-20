@@ -68,18 +68,42 @@ NEXT_PUBLIC_MEDIA_BASE_URL=
 
 空值会让页面改用本地 `/media/文件名` 路径。
 
-## 部署
+## Cloudflare Workers 自动部署
 
-当前线上站点由 ChatGPT Sites 托管。仓库没有包含 `.openai/hosting.json`，因为它属于站点实例身份，而不是网站业务源码。
+仓库已提供 `wrangler.jsonc`，目标 Worker 名为 `guandaqing-portfolio`。
+构建使用现有 Vinext + Cloudflare Vite 插件，生成服务端 Worker 和静态资源。
+无需 `.openai/hosting.json`、D1、R2 或 ChatGPT 登录。
 
-在兼容 Vinext/Cloudflare Worker 的环境中：
+首次在自己的 Cloudflare 账户完成 GitHub 连接：
+
+1. 打开 Workers & Pages，创建 **Worker** 并导入 GitHub 仓库 `bigqingG/Unity-Developer-Portfolio`。不要使用 Pages 的静态输出目录表单。
+2. Worker 名称填 `guandaqing-portfolio`，生产分支选 `main`，根目录保留仓库根目录。
+3. Build command 填 `npm test`（包含构建和页面验证），Deploy command 填 `npm run deploy`。
+4. Node.js 使用仓库 `.node-version` 中的 `22.22.2`；若控制台要求环境变量，则填 `NODE_VERSION=22.22.2`。
+5. 初次部署成功后，访问控制台返回的 workers.dev 地址，并检查 `/projects/kings-revival`。
+6. 后续推送到 `main` 或合并 PR 后，Workers Builds 自动构建并发布。其他分支的自动部署暂不启用。
+
+Worker 名必须与 `wrangler.jsonc` 一致。Workers 不需要填写 Pages 的 Build output directory。
+Vite 生成 `.wrangler/deploy/config.json`，Wrangler 通过它读取实际产物配置；不要直接把 `dist` 当静态网站上传。
+
+本地验证和手动部署：
 
 ```bash
 npm ci
-npm run build
+npm test
+npm run deploy:check
+# 首次手动部署需要先运行 npx wrangler login
+npm run deploy
 ```
 
-构建输出会生成在 `dist`。如果部署到其他平台，请在平台设置中使用 Node.js 22，并根据平台的 Worker/Next.js 适配方式配置输出目录。
+GitHub CI 会执行构建、页面测试和部署 dry-run；真正自动发布由 Cloudflare Workers Builds 执行，不需要把 Cloudflare Token 放进仓库。
+首次账户绑定和线上发布必须在控制台完成后才生效，仅合并代码不会建立 Cloudflare GitHub 连接。
+
+原 `https://guandaqing-portfolio.pages.dev/` 是 Pages 专属地址，不能直接转给 Worker。
+保留旧站，先验证新 Worker；自定义域名可随后在 Worker 的 Settings → Domains & Routes 中配置。
+原 ChatGPT Sites 地址独立运行，不随此仓库自动发布。现有两段视频仍默认从该地址读取；请保留它们，或自行设置 `NEXT_PUBLIC_MEDIA_BASE_URL` 指向新的媒体地址。
+
+官方文档：https://developers.cloudflare.com/workers/ci-cd/builds/
 
 ## 真实性说明
 

@@ -47,3 +47,6 @@ next-env.d.ts
 # Large demo videos are served from the live portfolio by default
 /public/media/*.mp4
 !/public/media/README.md
+
+# Local Cloudflare secrets
+.dev.vars*

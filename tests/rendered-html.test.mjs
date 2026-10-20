@@ -31,3 +31,21 @@ test("renders development preview metadata", async () => {
   );
   assert.match(await response.text(), developmentPreviewMeta);
 });
+
+for (const path of ["/", "/projects", "/projects/kings-revival"]) {
+  test(`serves King's Revival on ${path}`, async () => {
+    const { default: worker } = await import("../dist/server/index.js");
+    const response = await worker.fetch(
+      new Request(`https://portfolio.example${path}`),
+      { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+      { waitUntil() {}, passThroughOnException() {} },
+    );
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.ok(html.includes("国王复兴"), "King's Revival must be visible");
+    assert.ok(html.includes("/images/kings-revival-diplomacy.jpg"), "project image must be referenced");
+    if (path === "/projects/kings-revival") {
+      assert.ok(html.includes("https://www.taptap.cn/app/959274"), "play link must be present");
+    }
+  });
+}
