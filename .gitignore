@@ -52,3 +52,6 @@ next-env.d.ts
 .dev.vars*
 
 /dist-pages/
+
+!/public/media/kings-revival-showcase.mp4
+!/public/media/yaokaid-showcase.mp4

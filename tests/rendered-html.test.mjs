@@ -43,7 +43,8 @@ for (const path of ["/", "/projects", "/projects/kings-revival"]) {
     assert.equal(response.status, 200);
     const html = await response.text();
     assert.ok(html.includes("国王复兴"), "King's Revival must be visible");
-    assert.ok(html.includes("/images/kings-revival-diplomacy.jpg"), "project image must be referenced");
+    assert.ok(html.includes("/images/kings-revival-showcase.jpg"), "project image must be referenced");
+    assert.ok(html.includes("/media/kings-revival-showcase.mp4"), "showcase video must be present");
     if (path === "/projects/kings-revival") {
       assert.ok(html.includes("https://www.taptap.cn/app/959274"), "play link must be present");
     }

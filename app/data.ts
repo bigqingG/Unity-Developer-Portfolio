@@ -20,6 +20,7 @@ export type Project = {
   technologies: string[];
   cover?: string;
   video?: string;
+  videoCover?: boolean;
   links: { label: string; href?: string; note?: string }[];
   background: string;
   goals: string[];
@@ -69,8 +70,9 @@ export const projects: Project[] = [
       "Addressables",
       "DOTween",
     ],
-    cover: "/images/thirdbattleline-cover.jpg",
-    video: mediaUrl("thirdbattleline-demo.mp4"),
+    cover: "/images/yaokaid-showcase.jpg",
+    video: "/media/yaokaid-showcase.mp4",
+    videoCover: true,
     links: [
       {
         label: "TapTap 页面",
@@ -146,6 +148,13 @@ export const projects: Project[] = [
       "下一阶段将继续验证网络化边界和更完整的对局内容。",
     ],
     media: [
+      {
+        type: "video",
+        src: "/media/yaokaid-showcase.mp4",
+        poster: "/images/yaokaid-showcase.jpg",
+        alt: "Yaokaid 保护区场景与天气录屏",
+        caption: "45 秒场景展示：玩家、妖怪与晴雨雾天气。",
+      },
       {
         type: "video",
         src: mediaUrl("thirdbattleline-demo.mp4"),
@@ -279,7 +288,9 @@ private void HandleRemoteCommand(PlayerCommandDto command)
     summary:
       "将城市发展与卡牌防守串联的 Unity 单机策略游戏。从阶段经营与战斗闭环扩展到攻城战、外交和贸易，重点实践多系统规则联动，以及上线后根据玩家反馈安排迭代。",
     technologies: ["Unity", "C#", "策略系统", "卡牌战斗", "版本迭代"],
-    cover: "/images/kings-revival-diplomacy.jpg",
+    cover: "/images/kings-revival-showcase.jpg",
+    video: "/media/kings-revival-showcase.mp4",
+    videoCover: true,
     links: [
       { label: "TapTap 试玩页面", href: "https://www.taptap.cn/app/959274" },
       { label: "外交与贸易公告", href: "https://www.taptap.cn/moment/859258391162257518" },
@@ -355,6 +366,13 @@ private void HandleRemoteCommand(PlayerCommandDto command)
       "当前展示的是玩法与发布层面的工程案例；未附源码分析、自动化测试数量或性能指标。",
     ],
     media: [
+      {
+        type: "video",
+        src: "/media/kings-revival-showcase.mp4",
+        poster: "/images/kings-revival-showcase.jpg",
+        alt: "国王复兴游戏录屏",
+        caption: "45 秒游戏展示：城镇场景、发展、事件与卡牌战斗。",
+      },
       {
         type: "image",
         src: "/images/kings-revival-diplomacy.jpg",

@@ -528,3 +528,8 @@ img, video { display: block; max-width: 100%; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* Keep gameplay readable and show a real frame before video playback. */
+.project-cover > .project-cover-video { display: block; width: 100%; height: 100%; object-fit: contain; background: #101517; }
+.project-hero-media > .project-cover-video { display: block; width: 100%; aspect-ratio: 16/9; object-fit: contain; background: #101517; border-radius: 12px; }
+.video-cover-label { position: absolute; left: 14px; bottom: 14px; padding: 6px 10px; border-radius: 6px; background: rgba(0,0,0,.72); color: #fff; font-size: 12px; pointer-events: none; }

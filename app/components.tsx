@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-html-link-for-pages */
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import type { Project, ProjectMedia } from "./data";
 
 export function SiteHeader() {
@@ -117,11 +117,41 @@ export function ContactForm() {
   );
 }
 
+export function CoverVideo({ src, poster, title, preview = false }: { src: string; poster?: string; title: string; preview?: boolean }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const video = ref.current;
+    if (!preview || !video) return;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let visible = false;
+    const update = () => {
+      if (visible && !document.hidden && !motion.matches) {
+        void video.play().catch(() => {});
+      } else video.pause();
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    }, { threshold: 0.25 });
+    observer.observe(video);
+    document.addEventListener("visibilitychange", update);
+    motion.addEventListener("change", update);
+    return () => {
+      observer.disconnect();
+      video.pause();
+      document.removeEventListener("visibilitychange", update);
+      motion.removeEventListener("change", update);
+    };
+  }, [preview]);
+  return <video ref={ref} className="project-cover-video" src={src} poster={poster} controls={!preview} muted={preview} loop={preview} playsInline preload="none" aria-label={title} />;
+}
+
 export function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   return (
     <article className={featured ? "project-card project-featured" : "project-card"}>
       <a className="project-cover" href={`/projects/${project.slug}`}>
-        {project.cover ? <img src={project.cover} alt="" loading="lazy" /> : <EngineVisual />}
+        {project.videoCover && project.video ? <CoverVideo src={project.video} poster={project.cover} title={`${project.title} 视频预览`} preview /> : project.cover ? <img src={project.cover} alt="" loading="lazy" /> : <EngineVisual />}
+        {project.videoCover && <span className="video-cover-label">▶ 45 秒游戏展示</span>}
         <span className="project-status">{project.status}</span>
       </a>
       <div className="project-body">
@@ -176,7 +206,7 @@ export function MediaGallery({ media }: { media: ProjectMedia[] }) {
         {media.map((item, index) => (
           <figure className={item.type === "video" ? "media-wide" : ""} key={item.src}>
             {item.type === "video" ? (
-              <video controls preload="metadata" poster={item.poster} aria-label={item.alt}><source src={item.src} type="video/mp4" /></video>
+              <video controls playsInline preload="none" poster={item.poster} aria-label={item.alt}><source src={item.src} type="video/mp4" /></video>
             ) : (
               <button type="button" className="image-button" onClick={() => setSelected(item)} aria-label={`放大查看：${item.alt}`}>
                 <img src={item.src} alt={item.alt} loading={index > 1 ? "lazy" : "eager"} /><span>点击放大</span>

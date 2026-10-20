@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EngineVisual, MediaGallery, PageShell } from "../../components";
+import { CoverVideo, EngineVisual, MediaGallery, PageShell } from "../../components";
 import { getProject, projects } from "../../data";
 
 export function generateStaticParams() {
@@ -36,7 +36,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
               </div>
             </div>
             <div className="project-hero-media">
-              {project.cover ? <img src={project.cover} alt={`${project.title} 项目封面`} /> : <EngineVisual />}
+              {project.videoCover && project.video ? <CoverVideo src={project.video} poster={project.cover} title={`${project.title} 45 秒游戏展示`} /> : project.cover ? <img src={project.cover} alt={`${project.title} 项目封面`} /> : <EngineVisual />}
               <dl><div><dt>项目类型</dt><dd>{project.category}</dd></div><div><dt>开发时间</dt><dd>{project.period}</dd></div><div><dt>我的职责</dt><dd>{project.role}</dd></div><div><dt>当前状态</dt><dd>{project.status}</dd></div></dl>
             </div>
           </div>
