@@ -26,19 +26,19 @@ export default function Home() {
           </div>
 
           <div className="hero-visual" data-reveal>
-            <a href="/projects/thirdbattleline" className="hero-screen" aria-label="查看 ThirdBattleLine 项目">
-              <img src="/images/thirdbattleline-cover.jpg" alt="ThirdBattleLine 卡牌对战实机画面" />
+            <a href="/projects/thirdbattleline" className="hero-screen" aria-label="查看 妖怪牌 项目">
+              <img src="/images/yaokaid-battle-20261020.png" alt="妖怪牌 卡牌对战实机画面" />
               <div className="screen-caption">
                 <span>FEATURED / 01</span>
-                <strong>ThirdBattleLine</strong>
+                <strong>妖怪牌</strong>
                 <small>Unity 卡牌对战 · 持续开发</small>
               </div>
               <div className="play-chip">查看项目 ↗</div>
             </a>
-            <div className="card-stack" aria-label="ThirdBattleLine 卡牌设计">
-              <img src="/images/card-baishou.webp" alt="白首天狗卡牌" />
-              <img src="/images/card-qiushan.webp" alt="邱山穷奇卡牌" />
-              <img src="/images/card-tianshi.webp" alt="法级天师卡牌" />
+            <div className="card-stack" aria-label="妖怪牌 卡牌设计">
+              <img src="/images/yaokaid-card-wuer-ta-20261020.png" alt="雾耳獭卡牌" />
+              <img src="/images/yaokaid-card-nipan-xie-20261020.png" alt="泥盘蟹卡牌" />
+              <img src="/images/yaokaid-card-weiwei-li-20261020.png" alt="苇尾狸卡牌" />
             </div>
           </div>
         </section>

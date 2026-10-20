@@ -54,7 +54,7 @@ const mediaUrl = (filename: string) =>
 export const projects: Project[] = [
   {
     slug: "thirdbattleline",
-    title: "ThirdBattleLine",
+    title: "妖怪牌",
     eyebrow: "主力项目 · 独立开发",
     category: "游戏项目",
     status: "持续开发",
@@ -158,32 +158,32 @@ export const projects: Project[] = [
       {
         type: "video",
         src: mediaUrl("thirdbattleline-demo.mp4"),
-        poster: "/images/thirdbattleline-cover.jpg",
-        alt: "ThirdBattleLine 实机对战演示",
+        poster: "/images/yaokaid-battle-20261020.png",
+        alt: "妖怪牌 实机对战演示",
         caption: "实机剪辑：回合流程、卡牌部署与效果结算",
       },
       {
         type: "image",
-        src: "/images/card-baishou.webp",
-        alt: "ThirdBattleLine 白首天狗卡牌",
+        src: "/images/yaokaid-card-wuer-ta-20261020.png",
+        alt: "妖怪牌 雾耳獭卡牌",
         caption: "单位牌示例：费用、攻防、关键词与描述层级",
       },
       {
         type: "image",
-        src: "/images/card-qiushan.webp",
-        alt: "ThirdBattleLine 邱山穷奇卡牌",
+        src: "/images/yaokaid-card-nipan-xie-20261020.png",
+        alt: "妖怪牌 泥盘蟹卡牌",
         caption: "单位牌示例",
       },
       {
         type: "image",
-        src: "/images/card-tianshi.webp",
-        alt: "ThirdBattleLine 法级天师卡牌",
-        caption: "角色卡牌示例",
+        src: "/images/yaokaid-card-weiwei-li-20261020.png",
+        alt: "妖怪牌 苇尾狸卡牌",
+        caption: "单位牌示例：苇尾狸",
       },
       {
         type: "image",
         src: "/images/thirdbattleline-review.webp",
-        alt: "ThirdBattleLine TapTap 评价截图",
+        alt: "妖怪牌 TapTap 评价截图",
         caption: "TapTap 试玩反馈截图，分数为截图当时记录",
       },
     ],
@@ -581,7 +581,7 @@ private void HandleRemoteCommand(PlayerCommandDto command)
   },
   {
     slug: "thirdbattleline-network",
-    title: "ThirdBattleLine 网络对战框架",
+    title: "妖怪牌 网络对战框架",
     eyebrow: "网络模块 · 从主项目抽离展示",
     category: "工具与引擎",
     status: "M3 推进中",
@@ -592,7 +592,7 @@ private void HandleRemoteCommand(PlayerCommandDto command)
     technologies: ["Unity", "C#", "Nakama", "WebSocket", "DTO", "TypeScript RPC"],
     links: [{ label: "所属项目", href: "/projects/thirdbattleline" }, { label: "NetCardGame", href: "https://github.com/bigqingG/NetCardGame" }],
     background:
-      "该模块从 ThirdBattleLine 的稳定单机/AI 主链之外隔离接入。先用双客户端 Ping/Pong 验证连接和 Relay，再逐步接入 EndTurn、PlayCard 与后续状态校验，避免网络改造破坏既有玩法。",
+      "该模块从 妖怪牌 的稳定单机/AI 主链之外隔离接入。先用双客户端 Ping/Pong 验证连接和 Relay，再逐步接入 EndTurn、PlayCard 与后续状态校验，避免网络改造破坏既有玩法。",
     goals: ["完成双玩家最小可验证 PvP 链路", "建立客户端与服务端共享的协议事实源", "支持命令去重和远端动作回放", "为确定性随机、状态哈希与断线恢复预留边界"],
     responsibilities: ["Nakama 客户端与 Session 管理", "Matchmaker、Relay 和 OpCode 分流", "PlayerCommandDto / GameEventDto 协议设计", "NetworkGameOrchestrator 与远端玩家装配", "双 Editor 联调与 Smoke Test"],
     systems: [
@@ -605,7 +605,7 @@ private void HandleRemoteCommand(PlayerCommandDto command)
       { problem: "一次性网络化整个战斗系统会显著扩大回归范围。", solution: "按认证、Relay、EndTurn、无目标出牌、确定性随机和重连分里程碑推进。", result: "目前单机/AI 仍保持稳定主路径，网络模块可独立验证。" },
     ],
     results: ["完成设备认证、Session 缓存和 Socket 连接", "完成 Matchmaker 与双 Editor Relay Ping/Pong 验证", "建立网络编排器、远端玩家与 DTO 基础结构", "PlayCard Relay、状态校验与重连仍在开发中"],
-    retrospective: ["网络模块需要明确区分“代码已接入”和“完整对局已验收”。", "NetCardGame 仓库目前作为后续独立整理入口，实际可展示实现以 ThirdBattleLine 私有仓库为准。"],
+    retrospective: ["网络模块需要明确区分“代码已接入”和“完整对局已验收”。", "NetCardGame 仓库目前作为后续独立整理入口，实际可展示实现以 妖怪牌 私有仓库为准。"],
     media: [],
   },
   {
@@ -703,7 +703,7 @@ export const timeline = [
   },
   {
     date: "个人长期项目",
-    title: "ThirdBattleLine · 独立开发",
+    title: "妖怪牌 · 独立开发",
     text: "持续迭代数据驱动卡牌、事件结算、AI、移动端 UI 和测试体系，逐步推进架构重构。",
   },
   {

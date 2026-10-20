@@ -28,7 +28,7 @@ export default function ResumePage() {
             </section>
             <section>
               <h2>代表项目</h2>
-              <article><header><h3>ThirdBattleLine</h3><time>独立开发</time></header><p>数据驱动卡牌、EffectPipeline、事件结算、AI 对局、移动端 UI 与核心规则测试。</p></article>
+              <article><header><h3>妖怪牌</h3><time>独立开发</time></header><p>数据驱动卡牌、EffectPipeline、事件结算、AI 对局、移动端 UI 与核心规则测试。</p></article>
               <article><header><h3>《余光》GameJam</h3><time>2024.10 — 2024.11</time></header><p>负责整体架构、角色控制、关卡流程、基础 UI、存档和可试玩版本交付。</p></article>
             </section>
             <section><h2>教育经历</h2><article><header><h3>河南城建学院 · 数字媒体技术本科</h3><time>2023 — 2027</time></header><p>多次参加校内外 GameJam 与游戏制作比赛，曾担任游戏开发社主程。</p></article></section>
