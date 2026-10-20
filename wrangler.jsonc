@@ -1,10 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "guandaqing-portfolio",
-  "main": "worker/index.ts",
+  "name": "unity-developer-portfolio",
+  "pages_build_output_dir": "./dist-pages",
   "compatibility_date": "2026-05-15",
-  "compatibility_flags": ["nodejs_compat"],
-  "workers_dev": true,
-  "assets": { "binding": "ASSETS" },
-  "observability": { "enabled": true }
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
 }

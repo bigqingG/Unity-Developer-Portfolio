@@ -68,9 +68,30 @@ NEXT_PUBLIC_MEDIA_BASE_URL=
 
 空值会让页面改用本地 `/media/文件名` 路径。
 
+## Cloudflare Pages 自动部署
+
+创建 Pages 项目并连接同一 GitHub 仓库，填写：
+
+| 配置 | 值 |
+|---|---|
+| Project name | `unity-developer-portfolio` |
+| Production branch | `main` |
+| Framework preset | `None` |
+| Build command | `npm run build:pages` |
+| Build output directory | `dist-pages` |
+| Root directory | 留空（仓库根目录） |
+| 环境变量 | `NODE_VERSION=22.22.2` |
+
+`wrangler.jsonc` 为 Pages 设置输出目录、兼容日期和 `nodejs_compat`。
+`build:pages` 先构建，再将客户端资源和服务端模块整理成 Pages Advanced Mode 的 `_worker.js` 目录。
+不是纯静态导出；页面路由由 Pages Functions 提供，图片和脚本直接由 Pages 静态资源服务提供。
+提交到 `main` 后，已连接的 Pages 项目会自动更新。既有 Worker 可继续通过下面的独立配置构建发布。
+
+官方说明：https://developers.cloudflare.com/pages/functions/advanced-mode/
+
 ## Cloudflare Workers 自动部署
 
-仓库已提供 `wrangler.jsonc`，目标 Worker 名为 `guandaqing-portfolio`。
+仓库已提供 `wrangler.workers.jsonc`，目标 Worker 名为 `guandaqing-portfolio`。
 构建使用现有 Vinext + Cloudflare Vite 插件，生成服务端 Worker 和静态资源。
 无需 `.openai/hosting.json`、D1、R2 或 ChatGPT 登录。
 
@@ -83,7 +104,7 @@ NEXT_PUBLIC_MEDIA_BASE_URL=
 5. 初次部署成功后，访问控制台返回的 workers.dev 地址，并检查 `/projects/kings-revival`。
 6. 后续推送到 `main` 或合并 PR 后，Workers Builds 自动构建并发布。其他分支的自动部署暂不启用。
 
-Worker 名必须与 `wrangler.jsonc` 一致。Workers 不需要填写 Pages 的 Build output directory。
+Worker 名必须与 `wrangler.workers.jsonc` 一致。Workers 不需要填写 Pages 的 Build output directory。
 Vite 生成 `.wrangler/deploy/config.json`，Wrangler 通过它读取实际产物配置；不要直接把 `dist` 当静态网站上传。
 
 本地验证和手动部署：

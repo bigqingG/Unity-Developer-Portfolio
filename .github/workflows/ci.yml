@@ -21,3 +21,4 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run deploy:check
+      - run: node scripts/package-pages.mjs
