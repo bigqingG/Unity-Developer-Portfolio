@@ -46,7 +46,7 @@ export default function Home() {
         <section className="metrics-strip" aria-label="能力摘要">
           <div className="section-shell metrics-inner">
             <div><strong>3 年</strong><span>Unity / C# 学习与项目实践</span></div>
-            <div><strong>2 款</strong><span>提供可试玩页面的游戏作品</span></div>
+            <div><strong>3 款</strong><span>提供可试玩页面的游戏作品</span></div>
             <div><strong>71 项</strong><span>卡牌核心规则 EditMode 测试</span></div>
             <div><strong>2027 届</strong><span>数字媒体技术本科</span></div>
           </div>
@@ -91,7 +91,7 @@ export default function Home() {
           <div className="featured-grid" data-reveal>
             <ProjectCard project={projects[0]} featured />
             <div className="featured-side">
-              <ProjectCard project={projects[1]} />
+              <ProjectCard project={projects.find((project) => project.slug === "kings-revival")!} />
               <ProjectCard project={projects.find((project) => project.slug === "seekpilot")!} />
             </div>
           </div>
